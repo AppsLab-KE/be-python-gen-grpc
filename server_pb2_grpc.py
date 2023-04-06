@@ -19,12 +19,23 @@ class OtpServiceStub(object):
                 request_serializer=server__pb2.DefaultRequest.SerializeToString,
                 response_deserializer=server__pb2.HealthResponse.FromString,
                 )
+        self.CreateAndSendOtp = channel.unary_unary(
+                '/otp.OtpService/CreateAndSendOtp',
+                request_serializer=server__pb2.CreateAndSendOtpReq.SerializeToString,
+                response_deserializer=server__pb2.DefaultResponse.FromString,
+                )
 
 
 class OtpServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def HealthCheck(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateAndSendOtp(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_OtpServiceServicer_to_server(servicer, server):
                     servicer.HealthCheck,
                     request_deserializer=server__pb2.DefaultRequest.FromString,
                     response_serializer=server__pb2.HealthResponse.SerializeToString,
+            ),
+            'CreateAndSendOtp': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAndSendOtp,
+                    request_deserializer=server__pb2.CreateAndSendOtpReq.FromString,
+                    response_serializer=server__pb2.DefaultResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class OtpService(object):
         return grpc.experimental.unary_unary(request, target, '/otp.OtpService/HealthCheck',
             server__pb2.DefaultRequest.SerializeToString,
             server__pb2.HealthResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateAndSendOtp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/otp.OtpService/CreateAndSendOtp',
+            server__pb2.CreateAndSendOtpReq.SerializeToString,
+            server__pb2.DefaultResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
