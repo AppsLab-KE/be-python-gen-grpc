@@ -1,2 +1,2 @@
-import db as db
-import otp as otp
+from . import db
+from . import otp
