@@ -1,2 +1,2 @@
-import db
-import otp
+import db as db
+import otp as otp
