@@ -6,7 +6,7 @@ setup(
     author='Marvin Collins',
     author_email='marvin@appslab.co.ke',
     url='https://github.com/AppsLab-KE/be-python-gen-grpc',
-    packages= ["everyshillingsproto"],
+    packages= find_packages(),
     install_requires=[
         'grpcio-tools',
         'grpcio'
