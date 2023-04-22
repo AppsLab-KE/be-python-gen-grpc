@@ -1,4 +1,4 @@
-# PYTHON PROTOGEN
+# PYTHON PROTOBUF
 
 ## Install
 ```shell
