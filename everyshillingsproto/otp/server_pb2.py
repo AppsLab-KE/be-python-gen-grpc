@@ -11,7 +11,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import otp_pb2 as otp__pb2
+from . import otp_pb2 as otp__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cserver.proto\x12\x03otp\x1a\totp.proto\"\x10\n\x0e\x44\x65\x66\x61ultRequest\"!\n\x0eHealthResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"1\n\x0f\x44\x65\x66\x61ultResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\r\n\x05\x65rror\x18\x02 \x01(\x08\x32\xf7\x01\n\nOtpService\x12\x37\n\x0bHealthCheck\x12\x13.otp.DefaultRequest\x1a\x13.otp.HealthResponse\x12\x46\n\x10\x43reateAndSendOtp\x12\x18.otp.CreateAndSendOtpReq\x1a\x18.otp.CreateAndSendOtpRes\x12\x33\n\tVerifyOtp\x12\x11.otp.VerifyOTPReq\x1a\x11.otp.VerifyOTPRes\"\x00\x12\x33\n\tResendOTP\x12\x11.otp.ResendOTPReq\x1a\x11.otp.ResendOTPRes\"\x00\x42\x32Z0github.com/AppsLab-KE/backend-everyshillings/otpb\x06proto3')

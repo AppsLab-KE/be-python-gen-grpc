@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import otp_pb2 as otp__pb2
-import server_pb2 as server__pb2
+from . import otp_pb2 as otp__pb2
+from . import server_pb2 as server__pb2
 
 
 class OtpServiceStub(object):
