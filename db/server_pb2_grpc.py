@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from db import server_pb2 as db_dot_server__pb2
-from db import user_pb2 as db_dot_user__pb2
+import server_pb2 as server__pb2
+import user_pb2 as user__pb2
 
 
 class DbServiceStub(object):
@@ -17,28 +17,28 @@ class DbServiceStub(object):
         """
         self.HealthCheck = channel.unary_unary(
                 '/db.DbService/HealthCheck',
-                request_serializer=db_dot_server__pb2.DefaultRequest.SerializeToString,
-                response_deserializer=db_dot_server__pb2.HealthResponse.FromString,
+                request_serializer=server__pb2.DefaultRequest.SerializeToString,
+                response_deserializer=server__pb2.HealthResponse.FromString,
                 )
         self.CreateUser = channel.unary_unary(
                 '/db.DbService/CreateUser',
-                request_serializer=db_dot_user__pb2.CreateUserReq.SerializeToString,
-                response_deserializer=db_dot_user__pb2.CreateUserRes.FromString,
+                request_serializer=user__pb2.CreateUserReq.SerializeToString,
+                response_deserializer=user__pb2.CreateUserRes.FromString,
                 )
         self.UpdateUser = channel.unary_unary(
                 '/db.DbService/UpdateUser',
-                request_serializer=db_dot_user__pb2.UpdateUserReq.SerializeToString,
-                response_deserializer=db_dot_user__pb2.UpdateUserRes.FromString,
+                request_serializer=user__pb2.UpdateUserReq.SerializeToString,
+                response_deserializer=user__pb2.UpdateUserRes.FromString,
                 )
         self.GetPagedUsers = channel.unary_unary(
                 '/db.DbService/GetPagedUsers',
-                request_serializer=db_dot_user__pb2.GetPagedUsersReq.SerializeToString,
-                response_deserializer=db_dot_user__pb2.GetPagedUsersRes.FromString,
+                request_serializer=user__pb2.GetPagedUsersReq.SerializeToString,
+                response_deserializer=user__pb2.GetPagedUsersRes.FromString,
                 )
         self.GetUserByField = channel.unary_unary(
                 '/db.DbService/GetUserByField',
-                request_serializer=db_dot_user__pb2.GetByfieldReq.SerializeToString,
-                response_deserializer=db_dot_user__pb2.GetByfieldRes.FromString,
+                request_serializer=user__pb2.GetByfieldReq.SerializeToString,
+                response_deserializer=user__pb2.GetByfieldRes.FromString,
                 )
 
 
@@ -81,28 +81,28 @@ def add_DbServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'HealthCheck': grpc.unary_unary_rpc_method_handler(
                     servicer.HealthCheck,
-                    request_deserializer=db_dot_server__pb2.DefaultRequest.FromString,
-                    response_serializer=db_dot_server__pb2.HealthResponse.SerializeToString,
+                    request_deserializer=server__pb2.DefaultRequest.FromString,
+                    response_serializer=server__pb2.HealthResponse.SerializeToString,
             ),
             'CreateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateUser,
-                    request_deserializer=db_dot_user__pb2.CreateUserReq.FromString,
-                    response_serializer=db_dot_user__pb2.CreateUserRes.SerializeToString,
+                    request_deserializer=user__pb2.CreateUserReq.FromString,
+                    response_serializer=user__pb2.CreateUserRes.SerializeToString,
             ),
             'UpdateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateUser,
-                    request_deserializer=db_dot_user__pb2.UpdateUserReq.FromString,
-                    response_serializer=db_dot_user__pb2.UpdateUserRes.SerializeToString,
+                    request_deserializer=user__pb2.UpdateUserReq.FromString,
+                    response_serializer=user__pb2.UpdateUserRes.SerializeToString,
             ),
             'GetPagedUsers': grpc.unary_unary_rpc_method_handler(
                     servicer.GetPagedUsers,
-                    request_deserializer=db_dot_user__pb2.GetPagedUsersReq.FromString,
-                    response_serializer=db_dot_user__pb2.GetPagedUsersRes.SerializeToString,
+                    request_deserializer=user__pb2.GetPagedUsersReq.FromString,
+                    response_serializer=user__pb2.GetPagedUsersRes.SerializeToString,
             ),
             'GetUserByField': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUserByField,
-                    request_deserializer=db_dot_user__pb2.GetByfieldReq.FromString,
-                    response_serializer=db_dot_user__pb2.GetByfieldRes.SerializeToString,
+                    request_deserializer=user__pb2.GetByfieldReq.FromString,
+                    response_serializer=user__pb2.GetByfieldRes.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -126,8 +126,8 @@ class DbService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/db.DbService/HealthCheck',
-            db_dot_server__pb2.DefaultRequest.SerializeToString,
-            db_dot_server__pb2.HealthResponse.FromString,
+            server__pb2.DefaultRequest.SerializeToString,
+            server__pb2.HealthResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -143,8 +143,8 @@ class DbService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/db.DbService/CreateUser',
-            db_dot_user__pb2.CreateUserReq.SerializeToString,
-            db_dot_user__pb2.CreateUserRes.FromString,
+            user__pb2.CreateUserReq.SerializeToString,
+            user__pb2.CreateUserRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -160,8 +160,8 @@ class DbService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/db.DbService/UpdateUser',
-            db_dot_user__pb2.UpdateUserReq.SerializeToString,
-            db_dot_user__pb2.UpdateUserRes.FromString,
+            user__pb2.UpdateUserReq.SerializeToString,
+            user__pb2.UpdateUserRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -177,8 +177,8 @@ class DbService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/db.DbService/GetPagedUsers',
-            db_dot_user__pb2.GetPagedUsersReq.SerializeToString,
-            db_dot_user__pb2.GetPagedUsersRes.FromString,
+            user__pb2.GetPagedUsersReq.SerializeToString,
+            user__pb2.GetPagedUsersRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -194,7 +194,7 @@ class DbService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/db.DbService/GetUserByField',
-            db_dot_user__pb2.GetByfieldReq.SerializeToString,
-            db_dot_user__pb2.GetByfieldRes.FromString,
+            user__pb2.GetByfieldReq.SerializeToString,
+            user__pb2.GetByfieldRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
