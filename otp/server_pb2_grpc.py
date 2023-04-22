@@ -2,6 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+import otp_pb2 as otp__pb2
 import server_pb2 as server__pb2
 
 
@@ -21,8 +22,18 @@ class OtpServiceStub(object):
                 )
         self.CreateAndSendOtp = channel.unary_unary(
                 '/otp.OtpService/CreateAndSendOtp',
-                request_serializer=server__pb2.CreateAndSendOtpReq.SerializeToString,
-                response_deserializer=server__pb2.DefaultResponse.FromString,
+                request_serializer=otp__pb2.CreateAndSendOtpReq.SerializeToString,
+                response_deserializer=otp__pb2.CreateAndSendOtpRes.FromString,
+                )
+        self.VerifyOtp = channel.unary_unary(
+                '/otp.OtpService/VerifyOtp',
+                request_serializer=otp__pb2.VerifyOTPReq.SerializeToString,
+                response_deserializer=otp__pb2.VerifyOTPRes.FromString,
+                )
+        self.ResendOTP = channel.unary_unary(
+                '/otp.OtpService/ResendOTP',
+                request_serializer=otp__pb2.ResendOTPReq.SerializeToString,
+                response_deserializer=otp__pb2.ResendOTPRes.FromString,
                 )
 
 
@@ -41,6 +52,18 @@ class OtpServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def VerifyOtp(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ResendOTP(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OtpServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -51,8 +74,18 @@ def add_OtpServiceServicer_to_server(servicer, server):
             ),
             'CreateAndSendOtp': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateAndSendOtp,
-                    request_deserializer=server__pb2.CreateAndSendOtpReq.FromString,
-                    response_serializer=server__pb2.DefaultResponse.SerializeToString,
+                    request_deserializer=otp__pb2.CreateAndSendOtpReq.FromString,
+                    response_serializer=otp__pb2.CreateAndSendOtpRes.SerializeToString,
+            ),
+            'VerifyOtp': grpc.unary_unary_rpc_method_handler(
+                    servicer.VerifyOtp,
+                    request_deserializer=otp__pb2.VerifyOTPReq.FromString,
+                    response_serializer=otp__pb2.VerifyOTPRes.SerializeToString,
+            ),
+            'ResendOTP': grpc.unary_unary_rpc_method_handler(
+                    servicer.ResendOTP,
+                    request_deserializer=otp__pb2.ResendOTPReq.FromString,
+                    response_serializer=otp__pb2.ResendOTPRes.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -93,7 +126,41 @@ class OtpService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/otp.OtpService/CreateAndSendOtp',
-            server__pb2.CreateAndSendOtpReq.SerializeToString,
-            server__pb2.DefaultResponse.FromString,
+            otp__pb2.CreateAndSendOtpReq.SerializeToString,
+            otp__pb2.CreateAndSendOtpRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VerifyOtp(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/otp.OtpService/VerifyOtp',
+            otp__pb2.VerifyOTPReq.SerializeToString,
+            otp__pb2.VerifyOTPRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ResendOTP(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/otp.OtpService/ResendOTP',
+            otp__pb2.ResendOTPReq.SerializeToString,
+            otp__pb2.ResendOTPRes.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

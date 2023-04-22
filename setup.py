@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Apps:Lab everyshillings',
+    name='everyshillings_proto',
     version='0.1.0',
     description='Apps:Lab everyshillings',
     author='Marvin Collins',
@@ -10,6 +10,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'grpcio-tools',
+        'grpcio'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
