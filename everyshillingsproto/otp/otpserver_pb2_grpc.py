@@ -3,7 +3,7 @@
 import grpc
 
 from . import otp_pb2 as otp__pb2
-from . import server_pb2 as server__pb2
+from . import otpserver_pb2 as otpserver__pb2
 
 
 class OtpServiceStub(object):
@@ -17,8 +17,8 @@ class OtpServiceStub(object):
         """
         self.HealthCheck = channel.unary_unary(
                 '/otp.OtpService/HealthCheck',
-                request_serializer=server__pb2.DefaultRequest.SerializeToString,
-                response_deserializer=server__pb2.HealthResponse.FromString,
+                request_serializer=otpserver__pb2.DefaultRequest.SerializeToString,
+                response_deserializer=otpserver__pb2.HealthResponse.FromString,
                 )
         self.CreateAndSendOtp = channel.unary_unary(
                 '/otp.OtpService/CreateAndSendOtp',
@@ -69,8 +69,8 @@ def add_OtpServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'HealthCheck': grpc.unary_unary_rpc_method_handler(
                     servicer.HealthCheck,
-                    request_deserializer=server__pb2.DefaultRequest.FromString,
-                    response_serializer=server__pb2.HealthResponse.SerializeToString,
+                    request_deserializer=otpserver__pb2.DefaultRequest.FromString,
+                    response_serializer=otpserver__pb2.HealthResponse.SerializeToString,
             ),
             'CreateAndSendOtp': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateAndSendOtp,
@@ -109,8 +109,8 @@ class OtpService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/otp.OtpService/HealthCheck',
-            server__pb2.DefaultRequest.SerializeToString,
-            server__pb2.HealthResponse.FromString,
+            otpserver__pb2.DefaultRequest.SerializeToString,
+            otpserver__pb2.HealthResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

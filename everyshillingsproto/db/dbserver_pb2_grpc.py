@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+from . import dbserver_pb2 as dbserver__pb2
 from . import user_pb2 as user__pb2
-from . import server_pb2 as server__pb2
 
 
 class DbServiceStub(object):
@@ -17,8 +17,8 @@ class DbServiceStub(object):
         """
         self.HealthCheck = channel.unary_unary(
                 '/db.DbService/HealthCheck',
-                request_serializer=server__pb2.DefaultRequest.SerializeToString,
-                response_deserializer=server__pb2.HealthResponse.FromString,
+                request_serializer=dbserver__pb2.DefaultRequest.SerializeToString,
+                response_deserializer=dbserver__pb2.HealthResponse.FromString,
                 )
         self.CreateUser = channel.unary_unary(
                 '/db.DbService/CreateUser',
@@ -81,8 +81,8 @@ def add_DbServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'HealthCheck': grpc.unary_unary_rpc_method_handler(
                     servicer.HealthCheck,
-                    request_deserializer=server__pb2.DefaultRequest.FromString,
-                    response_serializer=server__pb2.HealthResponse.SerializeToString,
+                    request_deserializer=dbserver__pb2.DefaultRequest.FromString,
+                    response_serializer=dbserver__pb2.HealthResponse.SerializeToString,
             ),
             'CreateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateUser,
@@ -126,8 +126,8 @@ class DbService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/db.DbService/HealthCheck',
-            server__pb2.DefaultRequest.SerializeToString,
-            server__pb2.HealthResponse.FromString,
+            dbserver__pb2.DefaultRequest.SerializeToString,
+            dbserver__pb2.HealthResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
