@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='everyshillings_proto',
-    version='0.1.0',
+    version='0.2.0',
     description='Apps:Lab everyshillings',
     author='Marvin Collins',
     author_email='marvin@appslab.co.ke',
