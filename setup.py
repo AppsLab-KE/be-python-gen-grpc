@@ -1,13 +1,12 @@
 from setuptools import setup, find_packages
-print(find_packages())
 setup(
-    name='everyshillingsproto',
+    name='everyshillings-proto',
     version='0.2.0',
     description='Apps:Lab everyshillings',
     author='Marvin Collins',
     author_email='marvin@appslab.co.ke',
     url='https://github.com/AppsLab-KE/be-python-gen-grpc',
-    packages= find_packages(),
+    packages= ["everyshillingsproto"],
     install_requires=[
         'grpcio-tools',
         'grpcio'
